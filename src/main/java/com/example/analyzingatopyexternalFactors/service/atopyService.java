@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class atopyService {
     // 요청이 들어오면 ResponseDTo로 받은걸 전달
     public symtomResponseDTO getData(){
-
-        return symtomResponseDTO;
+        // repository 자리
+        return SymtomRepository.show();
     }
 }
