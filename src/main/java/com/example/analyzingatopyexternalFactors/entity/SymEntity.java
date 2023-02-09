@@ -1,7 +1,9 @@
 package com.example.analyzingatopyexternalFactors.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import org.springframework.cglib.core.GeneratorStrategy;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +13,14 @@ import java.util.Date;
 
 @Entity
 @Getter
-public class SymtomEntity {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class SymEntity {
     // DB안에 들어갈 entity 속성
     // id, 날짜, 피부상태, 먹었던 것들, 수면시간, 운동 유무
     @Id
-    @GeneratedValue(GeneratorStrategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Date date;
