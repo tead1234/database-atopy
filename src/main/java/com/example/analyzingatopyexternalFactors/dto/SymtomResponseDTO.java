@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,5 +17,14 @@ public class SymtomResponseDTO<T> {
     int status;
     T data;
 
+    public SymtomResponseDTO from(
+            int status,
+            T data
+    ){
+        return new SymtomResponseDTO(
+                status,
+                data
+        );
+    }
 
 }

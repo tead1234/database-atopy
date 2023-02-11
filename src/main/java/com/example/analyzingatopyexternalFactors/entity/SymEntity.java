@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Any;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.*;
 
 @Entity
 @Getter
@@ -31,4 +33,9 @@ public class SymEntity {
     private Integer sleepTime;
 
     private String exercise;
+
+    // 위 정보들을 한번에 담을 리스트1234
+
+
+
 }
