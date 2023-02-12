@@ -1,5 +1,6 @@
 package com.example.analyzingatopyexternalFactors.entity;
 
+import com.example.analyzingatopyexternalFactors.dto.AtopyRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,6 +34,25 @@ public class SymEntity {
     private Integer sleepTime;
 
     private String exercise;
+
+    public static SymEntity of(
+
+            Date date,
+            Integer skinState,
+            String food,
+            Integer sleepTime,
+            String exercise
+    ){
+        return new SymEntity(
+                null,
+                date,
+                skinState,
+                food,
+                sleepTime,
+                exercise
+
+        );
+    }
 
     // 위 정보들을 한번에 담을 리스트1234
 
