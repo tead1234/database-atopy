@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +30,7 @@ public class atopyService {
     @Autowired
     SymtomRepository symtomRepository;
     //create
+    @Transactional
     public String create(AtopyRequestDTO dto){
         // dto를 여기서 처리해서 보내는게 맞지 않을까??
         // dto > entity
@@ -49,6 +51,7 @@ public class atopyService {
     }
 
     // read
+    @Transactional
     public SymtomResponseDTO getData(){
         // repository 자리
         // symToms = data
