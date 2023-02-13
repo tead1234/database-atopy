@@ -27,10 +27,9 @@ public class AtopyController {
         return objectMapper.writeValueAsString(atopyService.getData());
     }
     @GetMapping("/read/spec")
-    public String showById(@RequestParam Long id) {
+    public String showById(@RequestParam Long id) throws JsonProcessingException {
         // 여기서 id 값을 보내는 프론트 엔드가 필요함
-//        atopyService.getDataById(id);
-        return "된느듯??";
+        return objectMapper.writeValueAsString(atopyService.getDataById(id).getData());
     }
     // read >> id별로 읽어오기 상세페이지
     // 이 두개의 함수를 하나로 묶을 수 있지 않을까???
@@ -59,6 +58,11 @@ public class AtopyController {
     public String delete(@RequestParam Long id){
         atopyService.deleteByID(id);
         return "redirect:read";
+    }
+    @GetMapping("/deleteAll")
+    public String deleteAll(){
+        atopyService.deleteAll();
+        return "";
     }
     // delete ALl
 

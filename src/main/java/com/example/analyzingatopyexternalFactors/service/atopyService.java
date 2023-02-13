@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.net.http.HttpClient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -73,12 +74,35 @@ public class atopyService {
         });
         return new SymtomResponseDTO().from(200, newList);
     }
+    // readByID
+    public SymtomResponseDTO getDataById(Long id){
+        SymEntity sym =  symtomRepository.findById(id).orElse(null);
+        return new SymtomResponseDTO().from(
+                200
+                ,
+                Arrays.asList(
+
+
+                    sym.getId(),
+                    sym.getDate(),
+                    sym.getSkinState(),
+                    sym.getFood(),
+                    sym.getSleepTime(),
+                    sym.getExercise()
+                )
+        );
+    }
 
     // delete 서비스
+    @Transactional
     public String deleteByID(Long id){
         symtomRepository.deleteById(id);
         return "complete";
     }
+    public void deleteAll(){
+//        symtomRepository.deleteAll();
+    }
+
 
     @Transactional
     public void updateById(AtopyUpdateDTO dto) {
