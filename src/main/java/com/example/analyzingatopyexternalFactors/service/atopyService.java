@@ -1,6 +1,7 @@
 package com.example.analyzingatopyexternalFactors.service;
 
 import com.example.analyzingatopyexternalFactors.dto.AtopyRequestDTO;
+import com.example.analyzingatopyexternalFactors.dto.AtopyUpdateDTO;
 import com.example.analyzingatopyexternalFactors.dto.SymtomResponseDTO;
 import com.example.analyzingatopyexternalFactors.entity.SymEntity;
 import com.example.analyzingatopyexternalFactors.repository.SymtomRepository;
@@ -79,5 +80,27 @@ public class atopyService {
         return "complete";
     }
 
+    @Transactional
+    public void updateById(AtopyUpdateDTO dto) {
+        //
+        SymEntity a = symtomRepository.findById(dto.getId()).orElse(null);
+        log.info(a.toString());
+        if(a != null){
+            // id 가 일치하면 알아서 update됨
+            // a에 직접 setter를 달고 건드리면 정합성이 깨질 우려가 있음
+            // id를 넣고 만들수 있는 함수를 따로 구현하는게 더 안전할 거 같은데
+            SymEntity sym = SymEntity.usingId(
+                    dto.getId(),
+                    dto.getDate(),
+                    dto.getSkinState(),
+                    dto.getFood(),
+                    dto.getSleepTime(),
+                    dto.getExercise()
+            );
+            log.info(sym.getId().toString());
+            symtomRepository.saveAndFlush(sym);
+        }else{
 
+        }
+    }
 }

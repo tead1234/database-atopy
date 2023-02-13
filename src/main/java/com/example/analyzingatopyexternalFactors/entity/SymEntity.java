@@ -34,7 +34,7 @@ public class SymEntity {
     private Integer sleepTime;
 
     private String exercise;
-
+    // id 없이 구현할 수 있는 함수
     public static SymEntity of(
 
             Date date,
@@ -45,6 +45,25 @@ public class SymEntity {
     ){
         return new SymEntity(
                 null,
+                date,
+                skinState,
+                food,
+                sleepTime,
+                exercise
+
+        );
+    }
+    // id를 넣어서 구현해야 함수
+    public static SymEntity usingId(
+            Long id,
+            Date date,
+            Integer skinState,
+            String food,
+            Integer sleepTime,
+            String exercise
+    ){
+        return new SymEntity(
+                id,
                 date,
                 skinState,
                 food,
