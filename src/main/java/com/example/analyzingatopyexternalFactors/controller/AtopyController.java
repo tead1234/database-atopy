@@ -2,18 +2,33 @@ package com.example.analyzingatopyexternalFactors.controller;
 
 import com.example.analyzingatopyexternalFactors.dto.AtopyRequestDTO;
 import com.example.analyzingatopyexternalFactors.dto.AtopyUpdateDTO;
+import com.example.analyzingatopyexternalFactors.dto.SymtomResponseDTO;
 import com.example.analyzingatopyexternalFactors.service.atopyService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name= "post", description = "증상 및 외부 변인 등록")
 @RestController
 @Slf4j
+@ApiResponses({
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = SymtomResponseDTO.class))),
+        @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+        @ApiResponse(responseCode = "404", description = "NOT FOUND"),
+        @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
+})
 // 자동 직렬화
 // responseDTO형태를 json으로 ㅂ ㅕㄴ경
 public class AtopyController {
+
     @Autowired
     ObjectMapper objectMapper;
     @Autowired
@@ -29,8 +44,13 @@ public class AtopyController {
     @GetMapping("/read/spec")
     public String showById(@RequestParam Long id) throws JsonProcessingException {
         // 여기서 id 값을 보내는 프론트 엔드가 필요함
-        return objectMapper.writeValueAsString(atopyService.getDataById(id).getData());
+        return objectMapper.writeValueAsString(atopyService.getDataById(id));
     }
+    @GetMapping("/read/most")
+    public String showByCategory(@RequestParam String category){
+        return objectMapper.writeValueAsString(atopyService.getDataByCategory(category));
+    }
+
     // read >> id별로 읽어오기 상세페이지
     // 이 두개의 함수를 하나로 묶을 수 있지 않을까???
 
