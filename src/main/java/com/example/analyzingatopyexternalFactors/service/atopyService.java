@@ -129,6 +129,6 @@ public class atopyService {
     }
 
     public SymtomResponseDTO getDataByCategory(String category) {
-
+            return "";
     }
 }

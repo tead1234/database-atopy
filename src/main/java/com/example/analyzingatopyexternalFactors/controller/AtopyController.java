@@ -47,7 +47,7 @@ public class AtopyController {
         return objectMapper.writeValueAsString(atopyService.getDataById(id));
     }
     @GetMapping("/read/most")
-    public String showByCategory(@RequestParam String category){
+    public String showByCategory(@RequestParam String category) throws JsonProcessingException {
         return objectMapper.writeValueAsString(atopyService.getDataByCategory(category));
     }
 
