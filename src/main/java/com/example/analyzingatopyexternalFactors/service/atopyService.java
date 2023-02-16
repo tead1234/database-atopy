@@ -4,6 +4,7 @@ import com.example.analyzingatopyexternalFactors.dto.AtopyRequestDTO;
 import com.example.analyzingatopyexternalFactors.dto.AtopyUpdateDTO;
 import com.example.analyzingatopyexternalFactors.dto.SymtomResponseDTO;
 import com.example.analyzingatopyexternalFactors.entity.SymEntity;
+import com.example.analyzingatopyexternalFactors.repository.SymtomQueryRepository;
 import com.example.analyzingatopyexternalFactors.repository.SymtomRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -129,6 +130,7 @@ public class atopyService {
     }
 
     public SymtomResponseDTO getDataByCategory(String category) {
-            return "";
+            return new SymtomResponseDTO().from(200,
+                    SymtomQueryRepository.findMostFactors(category));
     }
 }
