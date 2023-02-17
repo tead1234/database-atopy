@@ -32,6 +32,8 @@ public class atopyService {
     // >>> List를 ResponseDTO에 담아서 보내자??
     @Autowired
     SymtomRepository symtomRepository;
+    @Autowired
+    SymtomQueryRepository symtomQueryRepository;
     //create
     @Transactional
     public String create(AtopyRequestDTO dto){
@@ -130,7 +132,16 @@ public class atopyService {
     }
 
     public SymtomResponseDTO getDataByCategory(String category) {
-            return new SymtomResponseDTO().from(200,
-                    SymtomQueryRepository.findMostFactors(category));
-    }
+            List<SymEntity> a = symtomQueryRepository.findMostFactors(category);
+            List<Object> b = new ArrayList<>();
+            a.forEach(symEntity -> {
+                b.add(
+                        symEntity.getId()
+                );
+            });
+            return new SymtomResponseDTO().from(200,b);
+
+        }
+
+
 }
