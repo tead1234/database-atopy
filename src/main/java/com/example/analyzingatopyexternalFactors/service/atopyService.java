@@ -6,6 +6,7 @@ import com.example.analyzingatopyexternalFactors.dto.SymtomResponseDTO;
 import com.example.analyzingatopyexternalFactors.entity.SymEntity;
 import com.example.analyzingatopyexternalFactors.repository.SymtomQueryRepository;
 import com.example.analyzingatopyexternalFactors.repository.SymtomRepository;
+import com.querydsl.core.Tuple;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -133,11 +134,12 @@ public class atopyService {
 
     public SymtomResponseDTO getDataByCategory(String category) {
             List<SymEntity> a = symtomQueryRepository.findMostFactors(category);
+            log.info(a.toString());
             List<Object> b = new ArrayList<>();
-            a.forEach(symEntity -> {
-                b.add(
-                        symEntity.getId()
-                );
+            a.forEach(tuple -> {
+                        log.info(tuple.getSkinState().toString());
+                        b.add(tuple);
+
             });
             return new SymtomResponseDTO().from(200,b);
 
