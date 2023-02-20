@@ -3,6 +3,7 @@ package com.example.analyzingatopyexternalFactors.service;
 import com.example.analyzingatopyexternalFactors.dto.AtopyRequestDTO;
 import com.example.analyzingatopyexternalFactors.dto.AtopyUpdateDTO;
 import com.example.analyzingatopyexternalFactors.dto.SymtomResponseDTO;
+import com.example.analyzingatopyexternalFactors.entity.QSymEntity;
 import com.example.analyzingatopyexternalFactors.entity.SymEntity;
 import com.example.analyzingatopyexternalFactors.repository.SymtomQueryRepository;
 import com.example.analyzingatopyexternalFactors.repository.SymtomRepository;
@@ -133,12 +134,12 @@ public class atopyService {
     }
 
     public SymtomResponseDTO getDataByCategory(String category) {
-            List<SymEntity> a = symtomQueryRepository.findMostFactors(category);
+            List<Tuple> a = symtomQueryRepository.findMostFactors(category);
             log.info(a.toString());
             List<Object> b = new ArrayList<>();
             a.forEach(tuple -> {
-                        log.info(tuple.getSkinState().toString());
-                        b.add(tuple);
+                        log.info(tuple.toString());
+                        b.add(tuple.get(0, Integer.class));
 
             });
             return new SymtomResponseDTO().from(200,b);
