@@ -48,7 +48,9 @@ public class atopyService {
         SymEntity sym = SymEntity.of(
                 dto.getDate(),
                 dto.getSkinState(),
-                dto.getFood(),
+                dto.getMorning(),
+                dto.getLunch(),
+                dto.getDinner(),
                 dto.getSleepTime(),
                 dto.getExercise()
         );
@@ -70,9 +72,11 @@ public class atopyService {
             newList.add(new ArrayList<Object>(Arrays.asList(symEntity.getId(),
                     symEntity.getDate(),
                     symEntity.getSkinState(),
-                    symEntity.getFood(),
-                    symEntity.getSleepTime(),
-                    symEntity.getExercise()
+                            symEntity.getMorning(),
+                            symEntity.getLunch(),
+                            symEntity.getDinner(),
+                            symEntity.getSleepTime(),
+                            symEntity.getExercise()
             )
             )
             );
@@ -91,7 +95,11 @@ public class atopyService {
                     sym.getId(),
                     sym.getDate(),
                     sym.getSkinState(),
-                    sym.getFood(),
+                        sym.getMorning(),
+                sym.getLunch(),
+        sym.getDinner(),
+        sym.getSleepTime(),
+        sym.getExercise(),
                     sym.getSleepTime(),
                     sym.getExercise()
                 )
@@ -104,8 +112,9 @@ public class atopyService {
         symtomRepository.deleteById(id);
         return "complete";
     }
+    @Transactional
     public void deleteAll(){
-//        symtomRepository.deleteAll();
+        symtomRepository.deleteAll();
     }
 
 
@@ -122,7 +131,9 @@ public class atopyService {
                     dto.getId(),
                     dto.getDate(),
                     dto.getSkinState(),
-                    dto.getFood(),
+                    dto.getMorning(),
+                    dto.getLunch(),
+                    dto.getDinner(),
                     dto.getSleepTime(),
                     dto.getExercise()
             );

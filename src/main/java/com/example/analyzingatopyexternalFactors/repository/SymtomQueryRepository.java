@@ -33,6 +33,7 @@ public class SymtomQueryRepository {
                     // groupby를 동적할당 할수 이쓴ㄴ 방법이 없네
                     .groupBy(qSymEntity.sleepTime)
                     .orderBy(qSymEntity.sleepTime.count().desc())
+                    .limit(3)
                     .fetch();
         }
         if (category != null && category.equals("exercise")) {
@@ -43,16 +44,40 @@ public class SymtomQueryRepository {
                     // groupby를 동적할당 할수 이쓴ㄴ 방법이 없네
                     .groupBy(qSymEntity.exercise)
                     .orderBy(qSymEntity.exercise.count().desc())
+                    .limit(3)
                     .fetch();
         }
-        if (category != null && category.equals("food")) {
-            expressions =  new Expression<?>[]{qSymEntity.food};
+        if (category != null && category.equals("morning")) {
+            expressions =  new Expression<?>[]{qSymEntity.morning};
             return queryFactory.select(expressions)
                     .from(qSymEntity)
                     .where(qSymEntity.skinState.eq(5).or(qSymEntity.skinState.eq(4)))
                     // groupby를 동적할당 할수 이쓴ㄴ 방법이 없네
-                    .groupBy(qSymEntity.food)
-                    .orderBy(qSymEntity.food.count().desc())
+                    .groupBy(qSymEntity.morning)
+                    .orderBy(qSymEntity.morning.count().desc())
+                    .limit(3)
+                    .fetch();
+        }
+        if (category != null && category.equals("lunch")){
+            expressions =  new Expression<?>[]{qSymEntity.lunch};
+            return queryFactory.select(expressions)
+                    .from(qSymEntity)
+                    .where(qSymEntity.skinState.eq(5).or(qSymEntity.skinState.eq(4)))
+                    // groupby를 동적할당 할수 이쓴ㄴ 방법이 없네
+                    .groupBy(qSymEntity.lunch)
+                    .orderBy(qSymEntity.lunch.count().desc())
+                    .limit(3)
+                    .fetch();
+        }
+        if (category != null && category.equals("dinner")) {
+            expressions =  new Expression<?>[]{qSymEntity.dinner};
+            return queryFactory.select(expressions)
+                    .from(qSymEntity)
+                    .where(qSymEntity.skinState.eq(5).or(qSymEntity.skinState.eq(4)))
+                    // groupby를 동적할당 할수 이쓴ㄴ 방법이 없네
+                    .groupBy(qSymEntity.dinner)
+                    .orderBy(qSymEntity.dinner.count().desc())
+                    .limit(3)
                     .fetch();
         }
         // tuple로 나오는데 이걸 dto로 바꿔야 됨

@@ -20,9 +20,14 @@ import java.util.Date;
         @JsonProperty("skinState")
 
         private Integer skinState;
-        @JsonProperty("food")
+        @JsonProperty("morning")
 
-        private String food;
+        private String morning;
+        @JsonProperty("lunch")
+        private String lunch;
+
+        @JsonProperty("dinner")
+        private String dinner;
         @JsonProperty("sleepTime")
 
         private Integer sleepTime;

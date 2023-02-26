@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Entity
@@ -25,12 +26,15 @@ public class SymEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotNull
     private Date date;
-
+    @NotNull
     private Integer skinState;
-    private String food;
+    private String morning;
+    private String lunch;
 
+    private String dinner;
+    @NotNull
     private Integer sleepTime;
 
     private String exercise;
@@ -39,7 +43,9 @@ public class SymEntity {
 
             Date date,
             Integer skinState,
-            String food,
+            String morning,
+            String lunch,
+            String dinner,
             Integer sleepTime,
             String exercise
     ){
@@ -47,7 +53,9 @@ public class SymEntity {
                 null,
                 date,
                 skinState,
-                food,
+                morning,
+                lunch,
+                dinner,
                 sleepTime,
                 exercise
 
@@ -58,7 +66,9 @@ public class SymEntity {
             Long id,
             Date date,
             Integer skinState,
-            String food,
+            String morning,
+            String lunch,
+            String dinner,
             Integer sleepTime,
             String exercise
     ){
@@ -66,7 +76,9 @@ public class SymEntity {
                 id,
                 date,
                 skinState,
-                food,
+                morning,
+                lunch,
+                dinner,
                 sleepTime,
                 exercise
 
