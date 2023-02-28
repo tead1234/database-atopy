@@ -38,8 +38,7 @@ dependencies {
 	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.14'
-	implementation platform('com.google.cloud:spring-cloud-gcp-dependencies:3.3.0')
-	implementation 'org.springframework.cloud:spring-cloud-gcp-starter-sql-postgresql'
+
 	// https://mvnrepository.com/artifact/com.google.cloud.sql/postgres-socket-factory
 	implementation group: 'com.google.cloud.sql', name: 'postgres-socket-factory', version: '1.10.0'
 	// QueryDSL
